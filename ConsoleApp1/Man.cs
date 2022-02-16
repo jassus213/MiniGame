@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ConsoleApp1
 {
 
-    class Man : IMovavable, ICharacterStats, IAttack, IDuel
+    public class Man : IMovavable, ICharacterStats, IAttack, IDuel
     {
 
         public int Savexmovement;
@@ -27,12 +27,12 @@ namespace ConsoleApp1
         private double _growth;
         private double _weight;
         private int _dmg;
-        
 
 
-       
-        
-        
+
+
+
+
 
 
         public Man(int health, double weight, double growth, int dmg)
@@ -90,23 +90,23 @@ namespace ConsoleApp1
             dmg = 15;
 
 
-           /* for (var i = 0; i < weight; i--)
-            {
+            /* for (var i = 0; i < weight; i--)
+             {
 
 
-                _steps = Savexmovement + Saveymovement;
+                 _steps = Savexmovement + Saveymovement;
 
-                if (_steps >= 2)
-                {
-                    _weight = Weight - 0.5;
-                    _savex = Savexmovement;
-                    _savey = Saveymovement;
-                    Savexmovement = 0;
-                    Saveymovement = 0;
-                }
+                 if (_steps >= 2)
+                 {
+                     _weight = Weight - 0.5;
+                     _savex = Savexmovement;
+                     _savey = Saveymovement;
+                     Savexmovement = 0;
+                     Saveymovement = 0;
+                 }
 
-                break;
-            }*/
+                 break;
+             }*/
 
         }
 

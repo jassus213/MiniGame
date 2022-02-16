@@ -1,4 +1,5 @@
 ﻿using ConsoleApp1;
+using ConsoleApp1.Commands;
 using ConsoleApp1.Inteface;
 using ConsoleApp1.Item;
 
@@ -14,20 +15,12 @@ namespace repeat
             Man man = new Man(100, 63.5, 172.5, 50);
 
 
-            var commandslist = new ICommands[2];
-            commandslist[0] = new BackwardMove(man);
-            commandslist[1] = new TopMove(man);
-            /*commandslist[1] = "s";*/
-            
-            var txt = Console.ReadLine();
-            foreach(var command in commandslist)
-            {
-                if (command.Process(txt))
-                    break;
-            }
 
-            
-            
+            var amethyst = new GameItem(GameElements.Amethyst, new Dictionary<GameElements, int>
+            {
+                {GameElements.Amethyst, 1 }
+            });
+
             var wood = new GameItem(GameElements.Wood, new Dictionary<GameElements, int>
             {
                 {GameElements.Wood , 1 }
@@ -52,22 +45,75 @@ namespace repeat
             });
 
 
+
+
+
+
             var gameItems = new GameItems(new GameItem[] { wood, axe, stone });
 
-            var crafter = new Craft(gameItems);
+            
 
             var userItems = new UserElements(new Dictionary<GameElements, int>
             {
                 {GameElements.Wood , 10 },
-                {GameElements.Stone , 10 }
+                {GameElements.Stone , 10 },
+                {GameElements.Amethyst, 1 }
             });
 
-            var craftedAxe = crafter.CraftItem(userItems, GameElements.Axe);
 
-            if(craftedAxe != null)
+            var crafter = new Craft(gameItems, userItems);
+
+
+            var commandslist = new List<ICommands>
             {
-                userItems.Add(craftedAxe);
+                new BackwardMove(man),
+                new TopMove(man),
+                new InventoryOpen(userItems),
+                new CraftCommand(crafter)
+            };
+
+
+            /*commandslist[1] = "s";*/
+
+            
+
+
+            
+
+
+
+           
+
+
+            while (true)
+            {
+                var txt = Console.ReadLine();
+                foreach (var command in commandslist)
+                {
+                    if (command.Process(txt))
+                        break;
+                }
             }
+            
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+            
+
+            
+
+           
 
       
 
