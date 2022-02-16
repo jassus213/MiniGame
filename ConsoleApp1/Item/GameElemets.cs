@@ -11,6 +11,7 @@ namespace ConsoleApp1.Item
         Stone = 0,
         Wood = 1,
         Axe = 2,
-        PickAxe = 3
+        PickAxe = 3,
+        Amethyst = 4,
     }
 }

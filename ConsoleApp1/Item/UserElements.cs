@@ -10,6 +10,7 @@ namespace ConsoleApp1
     public class UserElements
     {
         private Dictionary<GameElements, int> _elements;
+        public Dictionary<GameElements, int> Elements => _elements;
 
 
         public UserElements(IDictionary<GameElements, int> items)

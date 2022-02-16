@@ -13,7 +13,7 @@ namespace ConsoleApp1.Commands
         private IMovavable _man;
 
 
-        public string Cmd => "s";
+        public string Cmd => "d";
 
         public MoveRight(IMovavable man)
         {
@@ -25,7 +25,7 @@ namespace ConsoleApp1.Commands
         {
 
 
-            if (msg == "s")
+            if (msg == Cmd)
             {
                 _man.Move(+1, 0);
                 return true;

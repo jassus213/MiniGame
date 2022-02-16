@@ -25,7 +25,7 @@ namespace ConsoleApp1
         {
 
 
-            if (msg == "w")
+            if (msg == Cmd)
             {
                 _man.Move(0, +1);
                 return true;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    public class GameItems// : IItems
+    public class GameItems
     {
         private HashSet<GameItem> _items;
         public IReadOnlySet<GameItem> Items => _items;
@@ -39,9 +39,6 @@ namespace ConsoleApp1
 
 
 
-        public void RemoveItems()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

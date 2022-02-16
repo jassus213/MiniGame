@@ -10,28 +10,34 @@ namespace ConsoleApp1
     public class Craft
     {
         private GameItems _allgameitems;
-        
-        public Craft(GameItems allgameitems)
+        private UserElements _gameItems;
+
+        public Craft(GameItems allgameitems,UserElements gameItems)
         {
             _allgameitems = allgameitems;
+            _gameItems = gameItems;
+            
         }
-        
-        public GameItem CraftItem(UserElements gameitems, GameElements type)
+
+        public bool CraftItem(GameElements type)
         {
 
             var existElement = _allgameitems.Find(type);
-            if(existElement != null)
+            if (existElement != null)
             {
-                foreach(var parts in existElement.Parts)
+                if (existElement.Parts.Count == 1)
+                    return false;
+                foreach (var parts in existElement.Parts)
                 {
-                    if  (!gameitems.Remove(parts.Key, parts.Value))
-                        return null;
+                    if (!_gameItems.Remove(parts.Key, parts.Value))
+                        return false; ;
 
                 }
-                return existElement; 
+                _gameItems.Add(existElement);
+                return true;
             }
 
-            return null;
+            return false;
 
         }
 

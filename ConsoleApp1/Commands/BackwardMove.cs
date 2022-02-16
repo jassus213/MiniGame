@@ -20,7 +20,7 @@ namespace ConsoleApp1
         {
 
 
-            if (msg == "s")
+            if (msg == Cmd)
             {
                 _man.Move(0, -1);
                 return true;
@@ -51,14 +51,7 @@ namespace ConsoleApp1
             {
                 return;
             }
-            if (button == "m")
-            {
-                int x = man.X;
-                int y = man.Y;
-
-                var result = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
-                Console.WriteLine(result);
-            }
+            
             if (button == "st")
             {
 
