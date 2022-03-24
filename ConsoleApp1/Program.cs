@@ -14,7 +14,9 @@ namespace repeat
 
             Man man = new Man(100, 63.5, 172.5, 50);
 
+            Spider spider = new Spider(100, 80, 30, 15);
 
+            InventoryStatus inventoryStatus = new InventoryStatus(false) ;
 
             var amethyst = new GameItem(GameElements.Amethyst, new Dictionary<GameElements, int>
             {
@@ -46,13 +48,6 @@ namespace repeat
 
 
 
-
-
-
-            var gameItems = new GameItems(new GameItem[] { wood, axe, stone });
-
-
-
             var userItems = new UserElements(new Dictionary<GameElements, int>
             {
                 {GameElements.Wood , 10 },
@@ -61,15 +56,28 @@ namespace repeat
             });
 
 
+            var gameItems = new GameItems(new GameItem[] { wood, axe, stone, pickaxe });
             var crafter = new Craft(gameItems, userItems);
+
+
+           
+
+
+            
 
 
             var commandslist = new List<ICommands>
             {
                 new BackwardMove(man),
-                new TopMove(man),
-                new InventoryOpen(userItems),
-                new CraftCommand(crafter)
+                new TopMove(man, inventoryStatus.InventoryStat),
+                new MoveLeft(man),
+                new MoveRight(man),
+                new InventoryOpen(userItems, inventoryStatus),
+                new InventoryClose(userItems, inventoryStatus),
+                new CraftCommand(crafter),
+                new CoordsMan(man),
+                new CanCraft(userItems, new [] { pickaxe, axe })
+
             };
 
 
@@ -123,7 +131,7 @@ namespace repeat
 
 
 
-            Spider spider = new Spider(100, 80, 30, 15);
+            
 
 
 

@@ -11,13 +11,15 @@ namespace ConsoleApp1
     {
 
         private IMovavable _man;
+        private bool _invStatus;
 
 
         public string Cmd => "w";
 
-        public TopMove(IMovavable man)
+        public TopMove(IMovavable man, bool invStatus)
         {
             _man = man;
+            _invStatus = invStatus;
         }
 
 
@@ -27,8 +29,18 @@ namespace ConsoleApp1
 
             if (msg == Cmd)
             {
-                _man.Move(0, +1);
-                return true;
+                if (_invStatus == false)
+                {
+                    _man.Move(0, +1);
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Вы не можете это сделать, т.к открыт инвентарь.");
+                    return false;
+                }
+                
+                
             }
             return false;
         }

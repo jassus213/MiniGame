@@ -7,46 +7,70 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Commands
 {
-    
-        public class InventoryOpen : ICommands
+
+    public class InventoryOpen : ICommands
+    {
+        
+
+
+        private UserElements _items;
+        private InventoryStatus _inventoryStat;
+
+
+
+        public InventoryOpen(UserElements items, InventoryStatus inventoryStatus)
         {
-            private UserElements _items;
-
-
-
-
-            public InventoryOpen(UserElements items)
-            {
-                _items = items;
-
-            }
-
-            public string Cmd => "inv";
-
-            public void OpenProcess(GameItems gameitems)
-            {
-
-            }
-
-            public bool Process(string arguments)
-            {
-
-                if (Cmd == arguments)
-                {
-                    var allitems = _items.Elements;
-                    foreach (var itemid in allitems)
-                    {
-                        Console.WriteLine($"Имеется: {itemid.Key}, в количестве {itemid.Value}");
-                    }
-
-                    return true;
-                }
-                return false;
-
-            }
-
-
+            _items = items;
+            _inventoryStat = inventoryStatus;
 
         }
-    
+
+        public string Cmd => "inv_open";
+
+
+
+        public bool Process(string arguments)
+        {
+
+            
+            
+            
+
+            if (Cmd == arguments)
+            {
+
+                if (_inventoryStat.InventoryStat == false)
+                {
+                    
+                    _inventoryStat.InventoryStat = true;
+                    
+                    
+                    
+                    var allItemsUser = _items.Elements;
+                    foreach (var itemid in allItemsUser)
+                    {
+                        Console.WriteLine($"Имеется: {itemid.Key}, в количестве {itemid.Value}");
+
+
+
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Инвентарь и так открыт");
+                }
+
+
+
+                return true;
+            }
+            return false;
+
+        }
+
+
+
+    }
+
 }
