@@ -6,13 +6,15 @@ namespace ConsoleApp1
     {
 
         private IMovavable _man;
+        private InventoryStatus _inventoryStatus;
         
 
         public string Cmd => "s";
 
-        public BackwardMove(IMovavable man)
+        public BackwardMove(IMovavable man, InventoryStatus inventoryStatus)
         {
             _man = man;
+            _inventoryStatus = inventoryStatus;
         }
         
 
@@ -22,8 +24,16 @@ namespace ConsoleApp1
 
             if (msg == Cmd)
             {
-                _man.Move(0, -1);
-                return true;
+                if (_inventoryStatus.InventoryStat == false)
+                {
+                    _man.Move(0, -1);
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Вы не можете это сделать, т.к открыт инвентарь.");
+                    return false;
+                }
             }
             return false;
 
@@ -52,14 +62,7 @@ namespace ConsoleApp1
                 return;
             }
             
-            if (button == "st")
-            {
-
-
-                man.Character(man.Health, man.Weight, man.Growth, man.Dmg);
-                Console.WriteLine($"ManStats: Рост {man.Growth} Вес {man.Weight} Здоровье {man.Health}");
-                Console.WriteLine($"Местоположеине: {man.X} {man.Y}");
-            }
+           
 
             if (button == "duel")
             {
@@ -82,12 +85,7 @@ namespace ConsoleApp1
                 }
 
             }
-            if (button == "med")
-            {
-                var health = man.Health;
-                man.Regeneration(health);
-                Console.WriteLine($"Ваше здоровье теперь {man.Health}");
-            }
+            
             if (button == "spawn")
             {
 

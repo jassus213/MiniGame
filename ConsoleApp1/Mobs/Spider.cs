@@ -9,12 +9,13 @@ namespace ConsoleApp1
 {
 
 
-    class Spider : IMovavable, IAttack, ICharacterStats, IDuel
+    public class Spider : IMovavable, IAttack, ICharacterStats, IDuel
     {
         private int _health;
         private double _weight;
         private double _growth;
         private int _dmg;
+        private Man _man;
 
 
 
@@ -23,12 +24,13 @@ namespace ConsoleApp1
         public double Weight => _weight;
         public int Dmg => _dmg;
 
-        public Spider(int health, double growth, double weight, int dmg)
+        public Spider(int health, double growth, double weight, int dmg, Man man)
         {
             _health = health;
             _growth = growth;
             _weight = weight;
             _dmg = dmg;
+            _man = man;
 
         }
         public int Attack(int dmg, double crit)
@@ -79,8 +81,8 @@ namespace ConsoleApp1
         {
 
             var crit = 50 * 1.1;
-            Man man = new Man(100, 63.5, 172.5, 50);
-            var dmgman = man.Attack(man.Dmg, Math.Round(crit, 1));
+            
+            var dmgman = _man.Attack(_man.Dmg, Math.Round(crit, 1));
             _health = Health - dmgman;
             return _health;
         }

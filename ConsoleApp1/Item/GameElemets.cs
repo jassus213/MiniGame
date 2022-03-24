@@ -10,8 +10,10 @@ namespace ConsoleApp1.Item
     {
         Stone = 0,
         Wood = 1,
-        Axe = 2,
-        PickAxe = 3,
-        Amethyst = 4,
+        Axe_wooden = 2,
+        PickAxe_wooden = 3,
+        Shovel_wooden = 4, 
+        Stick = 5,
+        Amethyst = 6,
     }
 }

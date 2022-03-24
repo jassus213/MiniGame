@@ -5,21 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConsoleApp1.Commands
 {
-    class TopMove : ICommands
+    class MoveRight : ICommands
     {
 
         private IMovavable _man;
-        private bool _invStatus;
+        private InventoryStatus _invStatus;
 
 
-        public string Cmd => "w";
+        public string Cmd => "d";
 
-        public TopMove(IMovavable man, bool invStatus)
+        public MoveRight(IMovavable man, InventoryStatus inventoryStatus)
         {
             _man = man;
-            _invStatus = invStatus;
+            _invStatus = inventoryStatus;
         }
 
 
@@ -29,9 +29,9 @@ namespace ConsoleApp1
 
             if (msg == Cmd)
             {
-                if (_invStatus == false)
+                if (_invStatus.InventoryStat == false)
                 {
-                    _man.Move(0, +1);
+                    _man.Move(+1, 0);
                     return true;
                 }
                 else
@@ -39,7 +39,6 @@ namespace ConsoleApp1
                     Console.WriteLine("Вы не можете это сделать, т.к открыт инвентарь.");
                     return false;
                 }
-                
                 
             }
             return false;

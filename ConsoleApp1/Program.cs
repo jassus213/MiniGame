@@ -14,9 +14,9 @@ namespace repeat
 
             Man man = new Man(100, 63.5, 172.5, 50);
 
-            Spider spider = new Spider(100, 80, 30, 15);
+            Spider spider = new Spider(100, 80, 30, 15, man);
 
-            InventoryStatus inventoryStatus = new InventoryStatus(false) ;
+            InventoryStatus inventoryStatus = new InventoryStatus(false);
 
             var amethyst = new GameItem(GameElements.Amethyst, new Dictionary<GameElements, int>
             {
@@ -33,18 +33,29 @@ namespace repeat
                 {GameElements.Stone , 1 }
             });
 
-
-            var axe = new GameItem(GameElements.Axe, new Dictionary<GameElements, int>
+            var stick = new GameItem(GameElements.Stick, new Dictionary<GameElements, int>()
             {
-                {GameElements.Wood , 2 },
-                {GameElements.Stone , 3  }
+                {GameElements.Wood, 2 }
             });
 
-            var pickaxe = new GameItem(GameElements.PickAxe, new Dictionary<GameElements, int>
+            var axe_wooden = new GameItem(GameElements.Axe_wooden, new Dictionary<GameElements, int>
             {
                 {GameElements.Wood , 2 },
-                {GameElements.Stone , 3 }
+                {GameElements.Stick , 3 }
             });
+
+            var pickaxe_wooden = new GameItem(GameElements.PickAxe_wooden, new Dictionary<GameElements, int>
+            {
+                {GameElements.Wood , 3 },
+                {GameElements.Stick , 2 }
+            });
+            var shovel_wooden = new GameItem(GameElements.Shovel_wooden, new Dictionary<GameElements, int>
+            {
+                {GameElements.Wood , 2 },
+                {GameElements.Stick , 2 }
+            });
+
+
 
 
 
@@ -56,32 +67,34 @@ namespace repeat
             });
 
 
-            var gameItems = new GameItems(new GameItem[] { wood, axe, stone, pickaxe });
+            var gameItems = new GameItems(new GameItem[] { wood, axe_wooden, stone, pickaxe_wooden });
             var crafter = new Craft(gameItems, userItems);
 
 
-           
 
 
-            
+
+
 
 
             var commandslist = new List<ICommands>
             {
-                new BackwardMove(man),
-                new TopMove(man, inventoryStatus.InventoryStat),
-                new MoveLeft(man),
-                new MoveRight(man),
+                new BackwardMove(man, inventoryStatus),
+                new TopMove(man, inventoryStatus),
+                new MoveLeft(man, inventoryStatus),
+                new MoveRight(man, inventoryStatus),
                 new InventoryOpen(userItems, inventoryStatus),
                 new InventoryClose(userItems, inventoryStatus),
                 new CraftCommand(crafter),
                 new CoordsMan(man),
-                new CanCraft(userItems, new [] { pickaxe, axe })
+                new PersonStats(man),
+                new HealPerson(man),
+                new CanCraft(userItems, new [] { pickaxe_wooden, axe_wooden, shovel_wooden })
 
             };
 
 
-            /*commandslist[1] = "s";*/
+
 
 
 
@@ -131,7 +144,7 @@ namespace repeat
 
 
 
-            
+
 
 
 
@@ -161,7 +174,7 @@ namespace repeat
 
     }
 }
- 
+
 
 
 

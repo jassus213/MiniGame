@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ConsoleApp1
 {
 
-    class Man : IMovavable, ICharacterStats, IAttack, IDuel
+    public class Man : IMovavable, ICharacterStats, IAttack, IDuel
     {
 
         public int Savexmovement;
@@ -27,6 +27,7 @@ namespace ConsoleApp1
         private double _growth;
         private double _weight;
         private int _dmg;
+        private Spider _spider;
         
 
 
@@ -42,6 +43,7 @@ namespace ConsoleApp1
             _growth = growth;
             _weight = weight;
             _dmg = dmg;
+            
 
 
 
@@ -90,23 +92,6 @@ namespace ConsoleApp1
             dmg = 15;
 
 
-           /* for (var i = 0; i < weight; i--)
-            {
-
-
-                _steps = Savexmovement + Saveymovement;
-
-                if (_steps >= 2)
-                {
-                    _weight = Weight - 0.5;
-                    _savex = Savexmovement;
-                    _savey = Saveymovement;
-                    Savexmovement = 0;
-                    Saveymovement = 0;
-                }
-
-                break;
-            }*/
 
         }
 
@@ -137,16 +122,33 @@ namespace ConsoleApp1
         }
         public int Regeneration(int health)
         {
-            _health = Health + 15;
-            return _health;
+            if (health != 100)
+            {
+                if (health >= 85)
+                {
+                    _health = 100;
+                    return health;
+                }
+                else
+                {
+                    _health = Health + 15;
+                    return _health;
+                }
+            }
+            else 
+            {
+                Console.WriteLine("Вы здоровы");
+                return health;
+            }
+            return health;
         }
 
         public int Duel(int health, int dmg)
         {
 
             var crit = 15 * 1.2;
-            Spider spider = new Spider(100, 80, 30, 15);
-            var dmgspider = spider.Attack(spider.Dmg, Math.Round(crit, 1));
+            
+            var dmgspider = _spider.Attack(_spider.Dmg, Math.Round(crit, 1));
             _health = health - dmgspider;
             return Health;
         }
